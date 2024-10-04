@@ -1,0 +1,208 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Oswald', sans-serif;
+    background: linear-gradient(to bottom, #ffecd2, #fcb69f);
+    overflow-x: hidden;
+}
+
+/* Header */
+header {
+    background-color: #ff6f61;
+    color: #fff;
+    text-align: center;
+    padding: 2rem;
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.5em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Timeline */
+.timeline {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 4rem 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 10px;
+    height: 100%;
+    background-image: linear-gradient(to bottom, #ffcc00 50%, #000 50%);
+    background-size: 20px 40px;
+    transform: translateX(-50%);
+}
+
+/* Pandal Section */
+.pandal {
+    width: 100%;
+    padding: 4rem 1rem;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.6s ease-out;
+}
+
+.pandal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.pandal-content {
+    width: 45%;
+    padding: 2rem;
+    background: #ffe4b5;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Left and Right Pandal Placement */
+.pandal.left .pandal-content {
+    float: left;
+    margin-right: 5%;
+    transform: translateX(-100%);
+}
+
+.pandal.right .pandal-content {
+    float: right;
+    margin-left: 5%;
+    transform: translateX(100%);
+}
+
+.pandal.visible .pandal-content {
+    transform: translateX(0);
+}
+
+/* Footer */
+footer {
+    background-color: #ff6f61;
+    color: #fff;
+    text-align: center;
+    padding: 1.5rem;
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.5em;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 5rem;
+}
+
+/* Flower Container */
+#flower-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Ensure it doesn't interfere with user interaction */
+    overflow: hidden;
+    z-index: 999; /* On top of other elements */
+}
+
+/* Flower Animation */
+.flower {
+    position: absolute;
+    top: -10%; /* Start slightly above the viewport */
+    width: 40px; /* Adjust the size of the flower */
+    height: 40px; /* Adjust the size of the flower */
+    background: url('/shiuli.png') no-repeat center; /* Use the flower image you provided */
+    background-size: contain;
+    animation: fall linear infinite;
+    opacity: 0.9; /* Increase opacity to make it brighter */
+    filter: brightness(1.5); /* Adjust brightness to make flowers brighter */
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.9; /* Maintain higher opacity at the start for a brighter look */
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0.6; /* Reduce opacity slightly as it falls */
+    }
+}
+
+/* Responsive Design Adjustments */
+
+/* Tablet View */
+@media (max-width: 768px) {
+    header {
+        font-size: 2em;
+        padding: 1.5rem;
+    }
+
+    .timeline {
+        padding: 3rem 0;
+    }
+
+    .timeline::before {
+        width: 6px; /* Thinner timeline for smaller screens */
+        background-size: 15px 30px;
+    }
+
+    .pandal-content {
+        width: 90%;
+        margin: 0 auto 2rem auto; /* Center the pandal content */
+        float: none; /* Prevent floating for better stacking */
+        transform: translateX(0);
+    }
+
+    .pandal.left .pandal-content,
+    .pandal.right .pandal-content {
+        margin: 0 auto;
+        transform: translateX(0); /* Ensure they are centered */
+    }
+
+    footer {
+        font-size: 1.2em;
+        padding: 1rem;
+    }
+
+    .flower {
+        width: 30px; /* Slightly smaller flowers for tablets */
+        height: 30px;
+    }
+}
+
+/* Mobile View */
+@media (max-width: 480px) {
+    header {
+        font-size: 1.8em;
+        padding: 1rem;
+    }
+
+    .timeline {
+        padding: 2rem 0;
+    }
+
+    .timeline::before {
+        width: 4px; /* Thinner timeline for mobile screens */
+        background-size: 10px 20px;
+    }
+
+    .pandal-content {
+        width: 95%;
+        margin: 0 auto 1.5rem auto; /* Center the pandal content */
+        float: none; /* Remove float for better stacking */
+        transform: translateX(0);
+    }
+
+    footer {
+        font-size: 1em;
+        padding: 0.8rem;
+    }
+
+    .flower {
+        width: 25px; /* Smaller flowers for mobile devices */
+        height: 25px;
+    }
+}
